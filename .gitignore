@@ -1,0 +1,16 @@
+
+# Conda/Python virtual  environment
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+.env
+
+.vscode/
+
+ChatEnv
+temp_app.py
+
+# Local ChromaDB vector index (rebuilt on each init)
+.chroma_db/
