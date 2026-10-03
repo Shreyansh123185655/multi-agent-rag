@@ -15,12 +15,14 @@ class RouteQuery(BaseModel):
 
     datasource: Literal[
         "vectorstore",
+        "knowledge_graph",
         "wiki_search",
         "general_chat",
     ] = Field(
         ...,
         description=(
             "'vectorstore' — question is about a topic stored in the knowledge base; "
+            "'knowledge_graph' — structured questions about clinical trials, interventions, phases, conditions; "
             "'wiki_search' — factual/encyclopedic question not covered by vectorstore; "
             "'general_chat' — greeting, pleasantry, small talk, or casual expression."
         ),
@@ -51,21 +53,25 @@ def create_router(groq_api_key: str, urls: list):
     system = f"""You are an expert query classifier. \
 Given a user message, output EXACTLY ONE label:
 
-"vectorstore"  → The question is specifically about one of these knowledge-base topics:
-                 {topics_str}
-                 Use this for direct questions about prompt engineering, AI agents,
-                 agent memory, planning, tool use, or adversarial attacks on LLMs.
-                 Example: "What is prompt engineering?", "Explain agent memory"
+"knowledge_graph" → The question asks for structured information about clinical trials,
+                    such as phases, interventions, outcomes, or conditions studied.
+                    Example: "Which Phase 3 trials study Diabetes?", "What drug does TrialA use?"
 
-"wiki_search"  → Factual or encyclopedic question NOT covered by the topics above.
-                 Example: "Who is Albert Einstein?", "What is quantum computing?"
+"vectorstore"     → The question is specifically about one of these knowledge-base topics:
+                    {topics_str}
+                    Use this for direct questions about prompt engineering, AI agents,
+                    agent memory, planning, tool use, or adversarial attacks on LLMs.
+                    Example: "What is prompt engineering?", "Explain agent memory"
 
-"general_chat" → Greeting, pleasantry, small talk, or casual expression that needs
-                 NO factual lookup.
-                 Example: "Hello", "Hi!", "How are you?", "Thanks!", "Bye", "Good morning"
+"wiki_search"     → Factual or encyclopedic question NOT covered by the topics above.
+                    Example: "Who is Albert Einstein?", "What is quantum computing?"
+
+"general_chat"    → Greeting, pleasantry, small talk, or casual expression that needs
+                    NO factual lookup.
+                    Example: "Hello", "Hi!", "How are you?", "Thanks!", "Bye", "Good morning"
 
 CRITICAL RULE: ANY greeting or social pleasantry → ALWAYS "general_chat".
-Never route greetings or small talk to vectorstore or wiki_search.
+Never route greetings or small talk to vectorstore, knowledge_graph, or wiki_search.
 Do not route factual world-knowledge questions to general_chat."""
 
     prompt = ChatPromptTemplate.from_messages([

@@ -410,7 +410,7 @@ else:
 
         suggestions = [
             "What is prompt engineering?",
-            "Explain AI agent memory",
+            "Which Phase 3 trials study Diabetes?",
             "Who invented the internet?",
             "Hello! 👋",
         ]

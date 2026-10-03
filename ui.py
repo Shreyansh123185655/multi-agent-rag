@@ -76,6 +76,7 @@ def parse_env_file(content: str) -> dict:
 def _chip(source: str) -> str:
     return {
         "vectorstore": '<span class="src-chip src-vec">Knowledge Base</span>',
+        "knowledge_graph": '<span class="src-chip src-vec" style="color:var(--primary);border-color:var(--primary);background:rgba(249,115,22,0.1)">Knowledge Graph</span>',
         "wiki_search": '<span class="src-chip src-wiki">Wikipedia</span>',
         "general_chat": '<span class="src-chip src-chat">Chat</span>',
     }.get(source, '<span class="src-chip src-vec">Knowledge Base</span>')
@@ -748,6 +749,7 @@ def render_routing_info():
 <div class="info-card">
   <b>Smart Query Routing</b><br><br>
   <span class="ic-chip ic-v">Vector</span> Knowledge-base topics<br>
+  <span class="ic-chip ic-c" style="color:var(--primary);background:rgba(249,115,22,0.1)">Graph</span> Clinical trial queries<br>
   <span class="ic-chip ic-w">Wiki</span> General factual questions<br>
   <span class="ic-chip ic-c">Chat</span> Greetings and small talk
 </div>""",
