@@ -5,6 +5,11 @@ An agentic retrieval-augmented chat system that routes user queries to the right
 This project specifically integrates a **Semantic Knowledge Graph** to answer structured clinical trial questions alongside unstructured document retrieval, demonstrating agentic AI capabilities for pharmaceutical research and development.
 
 ---
+<img width="1701" height="938" alt="image" src="https://github.com/user-attachments/assets/890e6ef9-8de1-41e0-ac79-c628b68ec4d2" />
+
+<img width="1710" height="946" alt="image" src="https://github.com/user-attachments/assets/b3372185-19c4-497f-ac89-e1a5fba72d79" />
+
+
 
 ## 🏥 Clinical Use Case & Problem Statement
 
