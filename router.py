@@ -45,7 +45,7 @@ def create_router(groq_api_key: str, urls: list):
 
     llm = ChatGroq(
         groq_api_key=groq_api_key,
-        model_name="llama-3.1-8b-instant",
+        model_name="qwen/qwen3.8-27b",
     )
 
     structured_router = llm.with_structured_output(RouteQuery)

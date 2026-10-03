@@ -21,7 +21,7 @@ def build_graph(retriever, wiki_tool, question_router, groq_api_key: str):
 
     llm = ChatGroq(
         groq_api_key=groq_api_key,
-        model_name="llama-3.1-8b-instant",
+        model_name="qwen/qwen3.8-27b",
     )
 
     # ── Nodes ────────────────────────────────────────────────
